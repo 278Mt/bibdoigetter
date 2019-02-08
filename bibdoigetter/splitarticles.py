@@ -40,7 +40,7 @@ def gettitle(article):
     title = re.search("{.*?},", title).group(0)[1:-2]
     return title
 
-def splitarticles(fname, ofname):
+def splitarticles(fname):
     file = open(fname, "r")
     target_bib = file.read()
     file.close()
@@ -56,12 +56,17 @@ def splitarticles(fname, ofname):
             else:
                 articles[a] = articles[a][0:-1]+"  doi = {"+doi+"}\n}\n"
     
+    return articles
+    
+def loaddoi(fname, ofname):
+    articles = splitarticles(fname)
+    
     file = open(ofname, "w")
     print("ファイルを出力します")
     for article in articles:
         file.write(article+"\n\n")
     file.close()
     print("ファイルを出力しました")
-
+    
 if __name__ == "__main__":
-    splitarticles("../mybibfile.bib", "../output.bib")
+    loaddoi("../mybibfile.bib", "../output.bib")
