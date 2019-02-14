@@ -31,7 +31,7 @@ try:
         else:
             OUTPUT = "output.bib"
 except IndexError:
-    PATH = input("bibファイルのパスを入力してください: ")
+    PATH = input("[*.bib]の形式でbibファイル名を入力してください: ")
     OUTPUT = "output.bib"
 
-bdg.splitarticles(PATH, OUTPUT)
+bdg.loaddoi(PATH, OUTPUT)
