@@ -34,8 +34,8 @@ def getdoi(title):
             doi = re.sub("(\"|&).*", "", doi)
             return doi
     return None
-     
-def gettitle(article):    
+
+def gettitle(article):
     title = re.search("title.*?=.*?{.*?},", article).group(0)
     title = re.search("{.*?},", title).group(0)[1:-2]
     return title
@@ -54,11 +54,11 @@ def splitarticles(fname):
             if doi is None:
                 print(">>> DOINotFound: title=\""+title+"\"のdoiはありませんでした")
             else:
-                articles[a] = articles[a][0:-1]+"  doi = {"+doi+"}\n}\n"
+                articles[a] = articles[a][0:-1]+"  doi = {"+doi[len("https://doi.org/"):]+"}\n}\n"
     
     return articles
-    
-def loaddoi(fname, ofname):
+
+def loaddoi(fname, ofname="output.doi"):
     articles = splitarticles(fname)
     
     file = open(ofname, "w")
@@ -67,6 +67,6 @@ def loaddoi(fname, ofname):
         file.write(article+"\n\n")
     file.close()
     print("ファイルを出力しました")
-    
+
 if __name__ == "__main__":
     loaddoi("../mybibfile.bib", "../output.bib")
