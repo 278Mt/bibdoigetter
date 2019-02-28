@@ -26,7 +26,7 @@ def getdoi(title):
         try:
             target_gs_ri_url = gs_ri.find("a").get("href")
             target_gs_ri_html = requests.get(target_gs_ri_url).text
-            doiiter = re.search("https.*?doi.org.*?\"", target_gs_ri_html)
+            doiiter = re.search("//doi.org.*?\"", target_gs_ri_html)
         except requests.exceptions.InvalidSchema:
             continue
         if doiiter is not None:
@@ -54,7 +54,7 @@ def splitarticles(fname):
             if doi is None:
                 print(">>> DOINotFound: title=\""+title+"\"のdoiはありませんでした")
             else:
-                articles[a] = articles[a][0:-1]+"  doi = {"+doi[len("https://doi.org/"):]+"}\n}\n"
+                articles[a] = articles[a][0:-1]+"  doi = {"+doi[len("//doi.org/"):]+"}\n}\n"
     
     return articles
 
