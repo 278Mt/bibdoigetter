@@ -126,7 +126,7 @@ pdf2image==1.4.0
 pep8==1.7.1
 pexpect==4.6.0
 pickleshare==0.7.5
-Pillow==5.3.0
+Pillow==9.3.0
 PixivPy==3.3.5
 pkginfo==1.4.2
 pluggy==0.8.0
